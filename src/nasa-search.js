@@ -7,6 +7,7 @@ export class NasaSearch extends LitElement {
       loading: { type: Boolean, reflect: true },
       items: { type: Array },
       value: { type: String },
+      alt: { type: String },
     };
   }
 
@@ -71,10 +72,14 @@ export class NasaSearch extends LitElement {
       <div class="results">
         ${this.items.map(
           (item, index) => html`
-            <nasa-image
-              source="${item.links[0].href}"
-              title="${item.data[0].title}"
-            ></nasa-image>
+            <a href=${item.links[0].href} target="_blank">
+              <nasa-image
+                source="${item.links[0].href}"
+                title="${item.data[0].title}"
+                alt-description="${item.data[0].description}"
+                secondary-creator="${item.data[0].secondary_creator}"
+              ></nasa-image>
+            </a>
           `
         )}
       </div>

@@ -8,12 +8,16 @@ export class NasaImage extends DDDSuper(LitElement) {
     super();
     this.title = "";
     this.source = "";
+    this.altDes = "";
+    this.second_creator = "";
   }
 
   static get properties() {
     return {
       source: { type: String },
       title: { type: String },
+      altDes: { type: String, attribute: "alt-description" },
+      second_creator: { type: String, attribute: "secondary-creator" },
     };
   }
 
@@ -24,11 +28,14 @@ export class NasaImage extends DDDSuper(LitElement) {
           display: inline-block;
         }
 
+        div:hover {
+          background-color: var(--ddd-theme-default-skyLight);
+        }
+
         .image div {
           max-width: 240px;
           font-size: 16px;
           font-weight: bold;
-          background-color: var(--ddd-theme-default-beaverBlue);
         }
 
         .image img {
@@ -43,8 +50,9 @@ export class NasaImage extends DDDSuper(LitElement) {
   render() {
     return html`
       <div class="image">
-        <img src="${this.source}" />
-        <div>${this.title}</div>
+        <img src="${this.source}" alt=${this.altDes} />
+        <div>Title: ${this.title}</div>
+        Secondary Creator: ${this.second_creator}
       </div>
     `;
   }
